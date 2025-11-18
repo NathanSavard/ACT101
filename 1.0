@@ -1,0 +1,99 @@
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+export default function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-gray-100 text-gray-900 p-6">
+        <nav className="flex gap-6 mb-8 text-lg font-semibold">
+          <Link to="/">Accueil</Link>
+          <Link to="/login">Connexion</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/profile">Profil</Link>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
+  return (
+    <div className="p-6 bg-white rounded-2xl shadow-xl max-w-2xl mx-auto">
+      <h1 className="text-4xl font-bold mb-4">ImpôtMoiÇa!</h1>
+      <p className="text-lg">Votre service d'impôt simple, rapide et efficace.</p>
+      <p className="mt-4 text-md">Prix de base: <strong>20$</strong> + <strong>5% du retour</strong> pour une révision.</p>
+    </div>
+  );
+}
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (email && password) navigate("/profile");
+  };
+
+  return (
+    <div className="p-6 bg-white rounded-2xl shadow-xl max-w-lg mx-auto">
+      <h2 className="text-3xl font-bold mb-4">Connexion</h2>
+      <input className="w-full p-2 border rounded mb-3" placeholder="Courriel" value={email} onChange={e => setEmail(e.target.value)} />
+      <input className="w-full p-2 border rounded mb-3" placeholder="Mot de passe" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <button onClick={handleLogin} className="bg-blue-600 text-white px-4 py-2 rounded-xl w-full">Se connecter</button>
+    </div>
+  );
+}
+
+function Services() {
+  return (
+    <div className="p-6 bg-white rounded-2xl shadow-xl max-w-xl mx-auto">
+      <h2 className="text-3xl font-bold mb-4">Services</h2>
+      <div className="space-y-4">
+        <div className="p-4 border rounded-xl">
+          <h3 className="text-xl font-semibold">Révision d'impôts</h3>
+          <p>Vous déposez vos documents et nous vérifions tout.</p>
+          <p className="mt-2 font-bold">20$ + 5% du retour</p>
+        </div>
+
+        <div className="p-4 border rounded-xl">
+          <h3 className="text-xl font-semibold">Impôts complet (A à Z)</h3>
+          <p>On s'occupe de tout du début à la fin.</p>
+          <p className="mt-2 font-bold">À partir de 20$</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Profile() {
+  const [files, setFiles] = useState([]);
+
+  const handleUpload = (e) => {
+    setFiles([...files, ...e.target.files]);
+  };
+
+  return (
+    <div className="p-6 bg-white rounded-2xl shadow-xl max-w-xl mx-auto">
+      <h2 className="text-3xl font-bold mb-4">Profil</h2>
+      <p className="mb-4">Dépose ici tes factures et documents :</p>
+      <input type="file" multiple onChange={handleUpload} className="mb-4" />
+
+      <div>
+        <h3 className="text-xl font-semibold mb-2">Fichiers déposés :</h3>
+        <ul className="list-disc ml-4">
+          {files.map((f, i) => (
+            <li key={i}>{f.name}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
