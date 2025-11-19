@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImpôtMoiÇa! - Connexion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+              "brand-primary": "#0D47A1",
+              "brand-secondary": "#2E7D32",
+              "brand-accent": "#F57C00",
+              "neutral-text": "#333333",
+              "neutral-border": "#BDBDBD",
+              "neutral-bg": "#F5F5F5",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-neutral-bg dark:bg-background-dark font-display">
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col bg-white dark:bg-background-dark group/design-root overflow-x-hidden" style='font-family: "Public Sans", "Noto Sans", sans-serif;'>
+<!-- Logo Section -->
+<div class="flex flex-col items-center justify-center p-8 pt-12 text-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl text-brand-primary">receipt_long</span>
+<h1 class="text-3xl font-bold tracking-tight text-neutral-text dark:text-white">ImpôtMoiÇa!</h1>
+</div>
+<p class="mt-2 text-base text-gray-600 dark:text-gray-400">Simplifiez vos impôts.</p>
+</div>
+<!-- Segmented Control -->
+<div class="flex px-4 py-3">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl bg-neutral-bg dark:bg-background-light/10 p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-black/20 has-[:checked]:shadow-[0_0_6px_rgba(0,0,0,0.1)] has-[:checked]:text-brand-primary text-gray-500 dark:text-gray-400 dark:has-[:checked]:text-white text-base font-medium leading-normal transition-all duration-200">
+<span class="truncate">Se connecter</span>
+<input checked="" class="invisible w-0" name="auth-toggle" type="radio" value="Se connecter"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-black/20 has-[:checked]:shadow-[0_0_6px_rgba(0,0,0,0.1)] has-[:checked]:text-brand-primary text-gray-500 dark:text-gray-400 dark:has-[:checked]:text-white text-base font-medium leading-normal transition-all duration-200">
+<span class="truncate">S'inscrire</span>
+<input class="invisible w-0" name="auth-toggle" type="radio" value="S'inscrire"/>
+</label>
+</div>
+</div>
+<!-- Login Form -->
+<div class="flex flex-col px-4 pt-4">
+<!-- Email Field -->
+<div class="flex max-w-[480px] flex-wrap items-end gap-4 py-3">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-neutral-text dark:text-gray-200 text-sm font-medium leading-normal pb-2">Courriel</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-neutral-text dark:text-white focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-neutral-border bg-white dark:bg-background-dark/80 dark:border-gray-600 focus:border-brand-primary dark:focus:border-brand-primary h-14 placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal" placeholder="Entrez votre courriel" id="email" required/>
+</label>
+</div>
+<!-- Password Field -->
+<div class="flex max-w-[480px] flex-wrap items-end gap-4 py-3">
+<label class="flex flex-col min-w-40 flex-1">
+<div class="flex justify-between items-center pb-2">
+<p class="text-neutral-text dark:text-gray-200 text-sm font-medium leading-normal">Mot de passe</p>
+<a class="text-sm font-medium text-brand-primary hover:underline" href="#">Mot de passe oublié ?</a>
+</div>
+<div class="relative flex w-full flex-1 items-stretch">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-neutral-text dark:text-white focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-neutral-border bg-white dark:bg-background-dark/80 dark:border-gray-600 focus:border-brand-primary dark:focus:border-brand-primary h-14 placeholder:text-gray-500 p-[15px] pr-12 text-base font-normal leading-normal" placeholder="Entrez votre mot de passe" type="password" id="password" required/>
+<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 dark:text-gray-400" id="toggle-password">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</label>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="px-4 pt-6 pb-4">
+<button
+  type="button"
+  class="flex w-full items-center justify-center rounded-xl bg-brand-primary h-14 text-white text-base font-bold leading-normal shadow-md hover:bg-blue-800 transition-colors duration-200"
+  onclick="validateAndRedirect()">
+  Connexion
+</button>
+</div>
+<!-- Divider -->
+<div class="flex items-center gap-4 px-4 py-4">
+<div class="h-px flex-1 bg-neutral-border dark:bg-gray-700"></div>
+<p class="text-sm text-gray-500 dark:text-gray-400">ou</p>
+<div class="h-px flex-1 bg-neutral-border dark:bg-gray-700"></div>
+</div>
+<!-- Social Login -->
+<div class="flex flex-col gap-4 px-4">
+<!-- Google Button -->
+<button class="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-border dark:border-gray-600 bg-white dark:bg-transparent h-14 text-neutral-text dark:text-white text-base font-medium leading-normal hover:bg-gray-50 dark:hover:bg-white/10 transition-colors duration-200">
+<svg class="h-6 w-6" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1001_2)"><path d="M22.56 12.25C22.56 11.45 22.49 10.66 22.36 9.89H12.24V14.4H18.16C17.88 15.93 17.06 17.24 15.82 18.06V20.73H19.57C21.57 18.96 22.56 15.84 22.56 12.25Z" fill="#4285F4"></path><path d="M12.24 23C15.22 23 17.72 22.01 19.57 20.73L15.82 18.06C14.85 18.68 13.64 19.04 12.24 19.04C9.41001 19.04 6.99001 17.14 6.13001 14.7H2.28001V17.47C4.1 20.7 7.86 23 12.24 23Z" fill="#34A853"></path><path d="M6.13001 14.7C5.88001 13.98 5.75001 13.22 5.75001 12.42C5.75001 11.62 5.88001 10.86 6.13001 10.14V7.37H2.28001C1.5 8.94 1 10.61 1 12.42C1 14.23 1.5 15.9 2.28001 17.47L6.13001 14.7Z" fill="#FBBC05"></path><path d="M12.24 5.96001C13.73 5.96001 15.02 6.47001 16.03 7.42001L19.64 3.81001C17.71 2.10001 15.21 1 12.24 1C7.86 1 4.1 3.30001 2.28001 7.37001L6.13001 10.14C6.99001 7.70001 9.41001 5.96001 12.24 5.96001Z" fill="#EA4335"></path></g><defs><clippath id="clip0_1001_2"><rect fill="white" height="23" transform="translate(0.5 0.5)" width="23"></rect></clippath></defs></svg>
+<span>Continuer avec Google</span>
+</button>
+<!-- Apple Button -->
+<button class="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-border dark:border-gray-600 bg-black dark:bg-white h-14 text-white dark:text-black text-base font-medium leading-normal hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-200">
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.22 9.42C19.23 8.84 19.14 8.25 18.98 7.66C18.6 6.15 17.88 4.93 16.8 4.02C16.2 3.48 15.48 3.1 14.65 3C13.88 2.92 13.06 3.12 12.38 3.55C11.96 3.81 11.59 4.13 11.25 4.49C10.74 3.95 10.08 3.53 9.33 3.28C8.42 2.96 7.42 2.97 6.51 3.31C4.43 4.07 3.21 6.06 3.02 8.29C3.03 10.39 4.22 12.57 5.99 14.15C6.83 14.9 7.74 15.54 8.76 16.03C9.72 16.48 10.73 16.75 11.75 16.81C11.83 16.81 11.91 16.81 11.99 16.81C12.07 16.81 12.15 16.81 12.23 16.81C13.26 16.74 14.29 16.47 15.25 16.01C16.31 15.51 17.26 14.84 18.06 14.02C18.23 13.84 18.38 13.67 18.52 13.5C18.66 13.33 18.79 13.16 18.91 12.99C19.04 12.82 19.16 12.65 19.28 12.47C19.12 12.45 18.95 12.43 18.78 12.41C16.73 12.16 15.22 10.63 15.11 8.52C15.11 8.44 15.11 8.35 15.12 8.27C16.14 7.96 17.13 8.08 18.03 8.59C18.42 8.81 18.8 9.09 19.14 9.42H19.22ZM13.81 2.81C14.73 2.04 15.96 1.74 17.12 1.99C17.23 2.01 17.33 2.03 17.44 2.06C17.43 2.03 17.42 2 17.42 1.97C17.06 1.34 16.59 0.81 16 0.4C15.27 -0.05 14.39 -0.13 13.59 0.1C12.87 0.32 12.23 0.77 11.77 1.37C12.45 1.58 13.11 1.99 13.63 2.54C13.69 2.6 13.75 2.67 13.81 2.73V2.81Z"></path></svg>
+<span>Continuer avec Apple</span>
+</button>
+</div>
+<div class="flex-grow"></div>
+</div>
+<form id="login-form">
+<input type="email" name="email" required placeholder="Courriel">
+  <input type="password" name="password" required placeholder="Mot de passe">
+  <button type="submit">Connexion</button>
+</form>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'tableaudebord.html';
+    });
+  });
+  function validateAndRedirect() {
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    alert("Veuillez entrer une adresse courriel valide.");
+    return;
+  }
+  if (password.length < 6) {
+    alert("Veuillez entrer un mot de passe d'au moins 6 caractères.");
+    return;
+  }
+  window.location.href = 'tableaudebord.html';
+}
+</script>
+</body></html>
