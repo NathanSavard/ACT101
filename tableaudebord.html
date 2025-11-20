@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tableau de bord - ImpôtMoiÇa!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#2C3E50",
+                    "secondary": "#27AE60",
+                    "background-light": "#F4F6F9",
+                    "background-dark": "#101922",
+                    "text-light": "#34495E",
+                    "text-dark": "#E0E0E0",
+                    "card-light": "#FFFFFF",
+                    "card-dark": "#1A2836",
+                    "border-light": "#E0E6EC",
+                    "border-dark": "#2C3E50",
+                },
+                fontFamily: {
+                    "display": ["Public Sans", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.75rem",
+                    "xl": "1rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+    }
+    .chat-container {
+        max-height: 350px;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+    .chat-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .chat-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    .chat-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    .chat-container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    .message-animation {
+        animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .typing-indicator {
+        display: inline-flex;
+        gap: 4px;
+        padding: 8px 12px;
+    }
+    .typing-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #27AE60;
+        animation: typing 1.4s infinite;
+    }
+    .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    @keyframes typing {
+        0%, 60%, 100% {
+            transform: translateY(0);
+            opacity: 0.7;
+        }
+        30% {
+            transform: translateY(-10px);
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-10 w-full bg-card-light dark:bg-card-dark border-b border-border-light dark:border-border-dark shadow-sm">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-4 text-primary dark:text-white">
+<div class="h-8 w-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">ImpôtMoiÇa!</h2>
+</div>
+<div class="hidden md:flex flex-1 items-center justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-white" href="Acceuilco.html">Accueil</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-white" href="commentcamarcheco.html">Comment ça marche?</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-white" href="nosservicesco.html">Nos services</a>
+</nav>
+<!-- Remplace cette partie dans ton header -->
+<div class="flex items-center gap-3">
+          <!-- Bouton Notifications -->
+          <div class="relative">
+            <button id="notificationButton" class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary/10 transition-colors relative">
+              <span class="material-symbols-outlined">notifications</span>
+              <!-- Badge de notification -->
+              <span class="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold">1</span>
+            </button>
+            
+            <!-- Menu dropdown des notifications -->
+            <div id="notificationMenu" class="hidden absolute right-0 mt-2 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-border-light dark:border-border-dark overflow-hidden z-50">
+              <div class="p-4 bg-primary/5 dark:bg-primary/10 border-b border-border-light dark:border-border-dark">
+                <h3 class="font-bold text-primary dark:text-white">Notifications</h3>
+              </div>
+              <div class="max-h-96 overflow-y-auto">
+                <div class="flex items-start gap-3 px-4 py-4 hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10 flex-shrink-0 mt-1">
+                    <span class="material-symbols-outlined text-secondary">event</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-text-light dark:text-text-dark">Rendez-vous confirmé</p>
+                    <p class="text-sm text-text-light/80 dark:text-text-dark/80 mt-1 leading-relaxed">Votre rendez-vous est pris avec votre expert le 2 février 2026</p>
+                    <p class="text-xs text-primary dark:text-secondary font-medium mt-2">Il y a 2 heures</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-3 bg-background-light dark:bg-background-dark border-t border-border-light dark:border-border-dark text-center">
+                <a href="notifications.html" class="text-sm font-medium text-primary dark:text-secondary hover:underline">Voir toutes les notifications</a>
+              </div>
+            </div>
+          </div>
+          <div>
+      </div>
+  
+  <!-- Menu déroulant du profil -->
+  <div class="relative">
+    <button id="profileButton" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 cursor-pointer hover:ring-2 hover:ring-primary transition-all" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCucfP6ScSQ3otNwK2cHOBFm9DPLVNZuGWaIhdZW-5GlJ7dHHqQ8OFGPxcFx2tkGnvGliAfKT5iUvGORczsojFD6pJXVCbmAzLuha569CWc_iNFfDiNwY5Va29vAivT9fRTttfehFCjdjYWFwiimiCZeef8E5umzr6MEYyBC-6KROG5tneI8yelFSSx2jBZpLA0IwuBPYscrlFjpuzvz8n6YKEb1c7yyL0E2jUwu3U-gRaxLCw8u16p2ZN_5tvGHwDbepALCOyDcfo");'></button>
+    
+    <!-- Menu dropdown (caché par défaut) -->
+    <div id="profileMenu" class="hidden absolute right-0 mt-2 w-56 bg-card-light dark:bg-card-dark rounded-lg shadow-lg border border-border-light dark:border-border-dark overflow-hidden z-50">
+      <div class="py-2">
+        <a href="tableaudebord.html" class="flex items-center gap-3 px-4 py-3 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+          <span class="material-symbols-outlined text-primary">dashboard</span>
+          <span>Mon tableau de bord</span>
+        </a>
+        <a href="parametres.html" class="flex items-center gap-3 px-4 py-3 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+          <span class="material-symbols-outlined text-primary">settings</span>
+          <span>Paramètres</span>
+        </a>
+        <a href="aide.html" class="flex items-center gap-3 px-4 py-3 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+          <span class="material-symbols-outlined text-primary">help</span>
+          <span>Aide</span>
+        </a>
+        <hr class="my-2 border-border-light dark:border-border-dark">
+        <a href="connexion.html" class="flex items-center gap-3 px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Se déconnecter</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<button class="md:hidden flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col gap-8">
+<!-- PageHeading -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl lg:text-4xl font-black tracking-[-0.033em] text-primary dark:text-white">Bonjour Exemple,</h1>
+<p class="text-base font-normal text-text-light dark:text-text-dark/80">Bienvenue sur votre tableau de bord. Gérez vos déclarations en toute simplicité.</p>
+</div>
+</div>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column (Main Content) -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Savings Card -->
+<div class="flex flex-col gap-6 rounded-xl bg-card-light dark:bg-card-dark p-6 shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex flex-col">
+<p class="text-lg font-bold text-primary dark:text-white">Vos économies sur la déclaration 2024</p>
+<p class="text-sm text-text-light dark:text-text-dark/80">Grâce à l'expertise d'ImpôtMoiÇa!</p>
+</div>
+<div class="relative flex justify-center items-end">
+<div class="absolute bottom-0 text-center">
+<p class="text-4xl md:text-5xl font-black text-secondary tracking-[-0.033em]">$1,250</p>
+<p class="text-sm font-medium text-secondary">+5.2% vs. l'an dernier</p>
+</div>
+<svg class="w-full max-w-sm" viewbox="0 0 100 50">
+<path class="stroke-gray-200 dark:stroke-gray-700" d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke-linecap="round" stroke-width="8"></path>
+<path class="stroke-secondary" d="M 5 50 A 45 45 0 0 1 95 50" fill="none" stroke-dasharray="141.37" stroke-dashoffset="21.2" stroke-linecap="round" stroke-width="8"></path>
+</svg>
+</div>
+</div>
+<!-- Document History -->
+<div class="flex flex-col gap-4">
+<h2 class="text-[22px] font-bold tracking-[-0.015em] text-primary dark:text-white">Historique de vos déclarations</h2>
+<div class="overflow-x-auto bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+<table class="w-full text-left">
+<thead class="border-b border-border-light dark:border-border-dark">
+<tr>
+<th class="p-4 text-sm font-bold uppercase text-text-light/70 dark:text-text-dark/70">Année</th>
+<th class="p-4 text-sm font-bold uppercase text-text-light/70 dark:text-text-dark/70">Statut</th>
+<th class="p-4 text-sm font-bold uppercase text-text-light/70 dark:text-text-dark/70 text-right">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-border-light dark:border-border-dark last:border-b-0">
+<td class="p-4 font-medium">2024</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-sm font-medium text-secondary">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+Complétée
+</span>
+</td>
+<td class="p-4 flex items-center justify-end gap-2">
+<button id="btnDownload24" class="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined">download</span></button>
+<button id="btnView24" class="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="border-b border-border-light dark:border-border-dark last:border-b-0">
+<td class="p-4 font-medium">2023</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-sm font-medium text-secondary">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+Complétée
+</span>
+</td>
+<td class="p-4 flex items-center justify-end gap-2">
+<button id="btnDownload23" class="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined">download</span></button>
+<button id="btnView23" class="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="border-b border-border-light dark:border-border-dark last:border-b-0">
+<td class="p-4 font-medium">2022</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-sm font-medium text-secondary">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+Complétée
+</span>
+</td>
+<td class="p-4 flex items-center justify-end gap-2">
+<button id="btnDownload22" class="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined">download</span></button>
+<button id="btnView22" class="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary hover:text-white transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column (Sidebar) -->
+<div class="lg:col-span-1 flex flex-col gap-8">
+<!-- Quick Actions -->
+<div class="flex flex-col gap-4 rounded-xl bg-card-light dark:bg-card-dark p-6 shadow-sm border border-border-light dark:border-border-dark">
+<h2 class="text-lg font-bold text-primary dark:text-white">Actions Rapides</h2>
+<div class="flex flex-col gap-3">
+<button class="flex h-12 w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary px-5 text-base font-bold text-white tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="truncate">Déposer des documents</span>
+</button>
+<button class="flex h-12 w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary/10 dark:bg-primary/20 px-5 text-base font-bold text-primary dark:text-white tracking-[0.015em] hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">chat</span>
+<span class="truncate">Contacter un expert</span>
+</button>
+</div>
+</div>
+<!-- Expert Chat avec fonctionnalité -->
+<div class="flex flex-col gap-4 rounded-xl bg-card-light dark:bg-card-dark p-6 shadow-sm border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-primary dark:text-white">Discutez avec votre expert</h2>
+<span id="messageCount" class="flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">1</span>
+</div>
+<!-- Zone de chat -->
+<div class="chat-container border border-border-light dark:border-border-dark rounded-lg p-3 bg-background-light dark:bg-background-dark" id="chatMessages">
+<div class="flex items-start gap-3 message-animation">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPtz_7cnRhD5V-gNaXu5hsNv0COUTpmdTl1wzdeqXZuxiEE87qyljc8PQcM_6Vb1Y1onmvx3TtTW1FJqFHgb5IJV4QdHzqTW725K_VOkspPWtf5gErxQJVJNn9s7yVx5CnI0jo8vzXJ6ovCjlxdhyEZ08sUfBfWdU_eAWODoA-7BXu7v-SvedASK0laMKJdq9KQsmOY47uWDyHEFTUECu8xoHvHrZ87i0wKt3VCF2m2CArjGFYL8I18s7J38zO7wxXVaRdJ2pn1Rg");'></div>
+<div class="flex flex-col flex-1">
+<p class="font-bold text-sm">Sophie Lavoie</p>
+<div class="text-sm text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark p-3 rounded-lg shadow-sm mt-1 border border-border-light dark:border-border-dark">
+Bonjour Exemple! J'ai bien reçu vos documents pour 2024. Comment puis-je vous aider aujourd'hui?
+</div>
+</div>
+</div>
+</div>
+<!-- Zone de saisie -->
+<div class="relative">
+<input 
+  id="messageInput"
+  class="w-full h-12 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark pl-4 pr-12 focus:ring-2 focus:ring-primary focus:border-primary outline-none" 
+  placeholder="Écrivez votre message..." 
+  type="text"
+/>
+<button 
+  id="sendButton"
+  class="absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+  <span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="bg-primary text-white mt-16 md:mt-24">
+<div class="max-w-5xl mx-auto py-10 px-6 md:px-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold">ImpôtMoiÇa!</h3>
+<p class="text-sm mt-2 text-white/80">Votre partenaire de confiance pour des déclarations de revenus simples et efficaces.</p>
+</div>
+<div>
+<h4 class="font-semibold">Navigation</h4>
+<ul class="space-y-2 mt-2 text-sm text-white/80">
+<li><a class="hover:text-accent transition-colors" href="Acceuilco.html">Accueil</a></li>
+<li><a class="hover:text-accent transition-colors" href="commentcamarcheco.html">Comment ça marche?</a></li>
+<li><a class="hover:text-accent transition-colors" href="nosservicesco.html">Nos services</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold">Contactez-nous</h4>
+<ul class="space-y-2 mt-2 text-sm text-white/80">
+<li>123 Rue de l'Impôt, Montréal, QC</li>
+<li>(514) 123-4567</li>
+<li>contact@impotmoica.com</li>
+</ul>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/20 text-center text-sm text-white/60">
+<p>© 2024 ImpôtMoiÇa!. Tous droits réservés.</p>
+</div>
+</div>
+</footer>
+<script>
+// Gestion des PDFs pour chaque année
+const pdf2024Url = "declaration24.pdf";
+const pdf2023Url = "declaration23.pdf";
+const pdf2022Url = "declaration22.pdf";
+
+// Boutons pour 2024
+document.getElementById("btnDownload24").addEventListener("click", () => {
+  const link = document.createElement("a");
+  link.href = pdf2024Url;
+  link.download = "declaration24.pdf";
+  link.click();
+});
+
+document.getElementById("btnView24").addEventListener("click", () => {
+  window.open(pdf2024Url, "_blank");
+});
+
+// Boutons pour 2023
+document.getElementById("btnDownload23").addEventListener("click", () => {
+  const link = document.createElement("a");
+  link.href = pdf2023Url;
+  link.download = "declaration23.pdf";
+  link.click();
+});
+
+document.getElementById("btnView23").addEventListener("click", () => {
+  window.open(pdf2023Url, "_blank");
+});
+
+// Boutons pour 2022
+document.getElementById("btnDownload22").addEventListener("click", () => {
+  const link = document.createElement("a");
+  link.href = pdf2022Url;
+  link.download = "declaration22.pdf";
+  link.click();
+});
+
+document.getElementById("btnView22").addEventListener("click", () => {
+  window.open(pdf2022Url, "_blank");
+});
+
+// Système de chat
+const chatMessages = document.getElementById('chatMessages');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
+const messageCount = document.getElementById('messageCount');
+let count = 1;
+
+// Base de connaissances pour le chatbot fiscal
+const responses = {
+  'bonjour': 'Bonjour! Comment puis-je vous aider avec vos déclarations d\'impôt?',
+  'salut': 'Salut! En quoi puis-je vous être utile aujourd\'hui?',
+  'hello': 'Bonjour! Je suis là pour répondre à vos questions fiscales.',
+  'hi': 'Bonjour! Que puis-je faire pour vous?',
+  
+  'documents': 'J\'ai bien reçu tous vos documents pour 2024. Ils sont complets et votre déclaration est prête!',
+  'manque': 'Tous vos documents sont complets! Si vous souhaitez ajouter quelque chose, utilisez le bouton "Déposer des documents".',
+  'reçu': 'Oui, j\'ai bien reçu tous vos documents. Votre dossier est à jour.',
+  
+  'statut': 'Votre déclaration 2024 est complétée. Vous avez économisé 1,250$ grâce à notre expertise!',
+  'économies': 'Vous avez économisé 1,250$ cette année, soit 5.2% de plus que l\'année dernière! 🎉',
+  'économie': 'Vous avez économisé 1,250$ cette année, soit 5.2% de plus que l\'année dernière! 🎉',
+  'combien': 'Vos économies totales pour 2024 s\'élèvent à 1,250$.',
+  
+  'remboursement': 'Votre remboursement devrait être traité dans les 2 à 3 semaines par l\'Agence du revenu.',
+  'quand': 'Les remboursements sont généralement traités dans un délai de 2 à 3 semaines.',
+  
+  'rdv': 'Je peux vous proposer un rendez-vous téléphonique cette semaine. Préférez-vous matin ou après-midi?',
+  'rendez-vous': 'Souhaitez-vous planifier un appel? Je suis disponible du lundi au vendredi.',
+  'rencontre': 'Je peux organiser une consultation. Quand seriez-vous disponible?',
+  
+  '2025': 'Pour la déclaration 2025, nous commencerons la préparation en février. Je vous contacterai en janvier.',
+  'prochaine': 'Votre prochaine déclaration sera pour l\'année 2025. Je vous recontacterai début 2026.',
+  
+  'aide': 'Je peux vous aider avec vos questions sur les impôts, vos déclarations passées, ou vos économies.',
+  'question': 'Posez-moi vos questions sur vos impôts, je suis là pour vous aider!',
+  
+  'merci': 'Avec plaisir! N\'hésitez pas si vous avez d\'autres questions. 😊',
+  'thank': 'You\'re welcome! Je suis toujours là pour vous aider.',
+  
+  'horaire': 'Je suis disponible du lundi au vendredi, de 9h à 17h.',
+  'heures': 'Nos heures d\'ouverture sont de 9h à 17h, du lundi au vendredi.',
+  'disponible': 'Je suis disponible en semaine de 9h à 17h pour répondre à vos questions.',
+  
+  'contact': 'Vous pouvez me joindre ici par chat ou par courriel à sophie.lavoie@impotmoica.ca',
+  'email': 'Mon adresse courriel est sophie.lavoie@impotmoica.ca',
+  'téléphone': 'Pour un appel, veuillez prendre rendez-vous via le bouton "Contacter un expert".',
+  
+  'prix': 'Nos tarifs varient selon la complexité de votre dossier. Votre déclaration 2024 était incluse dans votre forfait.',
+  'coût': 'Les frais dépendent de votre situation fiscale. Contactez-moi pour un devis personnalisé.',
+  'tarif': 'Je peux vous fournir une estimation après avoir analysé votre situation. Voulez-vous en discuter?',
+  
+  'default': 'Je ne comprends pas votre question. Pouvez-vous me donner plus de détails pour que je puisse mieux vous aider?'
+};
+
+function addMessage(text, isUser = false) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = 'flex items-start gap-3 message-animation mt-4';
+  
+  if (isUser) {
+    messageDiv.innerHTML = `
+      <div class="bg-primary rounded-full size-10 flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">
+        U
+      </div>
+      <div class="flex flex-col flex-1">
+        <p class="font-bold text-sm">Vous</p>
+        <div class="text-sm text-text-light dark:text-text-dark bg-primary/10 dark:bg-primary/20 p-3 rounded-lg mt-1">
+          ${text}
+        </div>
+      </div>
+    `;
+  } else {
+    messageDiv.innerHTML = `
+      <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPtz_7cnRhD5V-gNaXu5hsNv0COUTpmdTl1wzdeqXZuxiEE87qyljc8PQcM_6Vb1Y1onmvx3TtTW1FJqFHgb5IJV4QdHzqTW725K_VOkspPWtf5gErxQJVJNn9s7yVx5CnI0jo8vzXJ6ovCjlxdhyEZ08sUfBfWdU_eAWODoA-7BXu7v-SvedASK0laMKJdq9KQsmOY47uWDyHEFTUECu8xoHvHrZ87i0wKt3VCF2m2CArjGFYL8I18s7J38zO7wxXVaRdJ2pn1Rg");'></div>
+      <div class="flex flex-col flex-1">
+        <p class="font-bold text-sm">Sophie Lavoie</p>
+        <div class="text-sm text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark p-3 rounded-lg shadow-sm mt-1 border border-border-light dark:border-border-dark">
+          ${text}
+        </div>
+      </div>
+    `;
+  }
+  
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+  if (isUser) {
+    count++;
+    messageCount.textContent = count;
+  }
+}
+
+function showTypingIndicator() {
+  const typingDiv = document.createElement('div');
+  typingDiv.id = 'typingIndicator';
+  typingDiv.className = 'flex items-start gap-3 mt-4';
+  typingDiv.innerHTML = `
+    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPtz_7cnRhD5V-gNaXu5hsNv0COUTpmdTl1wzdeqXZuxiEE87qyljc8PQcM_6Vb1Y1onmvx3TtTW1FJqFHgb5IJV4QdHzqTW725K_VOkspPWtf5gErxQJVJNn9s7yVx5CnI0jo8vzXJ6ovCjlxdhyEZ08sUfBfWdU_eAWODoA-7BXu7v-SvedASK0laMKJdq9KQsmOY47uWDyHEFTUECu8xoHvHrZ87i0wKt3VCF2m2CArjGFYL8I18s7J38zO7wxXVaRdJ2pn1Rg");'></div>
+    <div class="flex flex-col flex-1">
+      <p class="font-bold text-sm">Sophie Lavoie</p>
+      <div class="bg-card-light dark:bg-card-dark p-3 rounded-lg shadow-sm mt-1 border border-border-light dark:border-border-dark">
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  chatMessages.appendChild(typingDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function removeTypingIndicator() {
+  const typingDiv = document.getElementById('typingIndicator');
+  if (typingDiv) {
+    typingDiv.remove();
+  }
+}
+
+function getResponse(message) {
+  const lowerMessage = message.toLowerCase().trim();
+  
+  // Recherche de mots-clés dans le message
+  for (const [key, response] of Object.entries(responses)) {
+    if (key !== 'default' && lowerMessage.includes(key)) {
+      return response;
+    }
+  }
+  
+  return responses.default;
+}
+
+function sendMessage() {
+  const message = messageInput.value.trim();
+  
+  if (message === '') return;
+  
+  // Ajouter le message de l'utilisateur
+  addMessage(message, true);
+  messageInput.value = '';
+  
+  // Afficher l'indicateur de saisie
+  showTypingIndicator();
+  
+  // Simuler un délai de réponse (800ms à 1500ms)
+  const delay = 800 + Math.random() * 700;
+  setTimeout(() => {
+    removeTypingIndicator();
+    const response = getResponse(message);
+    addMessage(response, false);
+  }, delay);
+}
+
+// Événements
+sendButton.addEventListener('click', sendMessage);
+
+messageInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+});
+
+// Focus automatique sur l'input
+messageInput.focus();
+
+// Menu déroulant du profil et des notifications
+const profileButton = document.getElementById('profileButton');
+const profileMenu = document.getElementById('profileMenu');
+const notificationButton = document.getElementById('notificationButton');
+const notificationMenu = document.getElementById('notificationMenu');
+
+// Gestion du menu profil
+if (profileButton && profileMenu) {
+  profileButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileMenu.classList.toggle('hidden');
+    // Fermer le menu des notifications si ouvert
+    if (notificationMenu) notificationMenu.classList.add('hidden');
+  });
+}
+
+// Gestion du menu notifications
+if (notificationButton && notificationMenu) {
+  notificationButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    notificationMenu.classList.toggle('hidden');
+    // Fermer le menu du profil si ouvert
+    if (profileMenu) profileMenu.classList.add('hidden');
+  });
+}
+
+// Fermer les menus si on clique ailleurs
+document.addEventListener('click', (e) => {
+  if (profileMenu && !profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+    profileMenu.classList.add('hidden');
+  }
+  if (notificationMenu && !notificationButton.contains(e.target) && !notificationMenu.contains(e.target)) {
+    notificationMenu.classList.add('hidden');
+  }
+});
+
+// Fermer les menus avec la touche Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (profileMenu) profileMenu.classList.add('hidden');
+    if (notificationMenu) notificationMenu.classList.add('hidden');
+  }
+});
+</script>
+</body></html>

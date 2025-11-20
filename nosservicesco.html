@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImpôtMoiÇa! - Nos Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2C3E50",
+                    "secondary": "#F4F6F7",
+                    "background-light": "#F4F6F9",
+                    "background-dark": "#101922",
+                    "text-light": "#34495E",
+                    "text-dark": "#E0E0E0",
+                    "card-light": "#FFFFFF",
+                    "card-dark": "#1A2836",
+                    "border-light": "#E0E6EC",
+                    "border-dark": "#2C3E50",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-10 w-full bg-card-light dark:bg-card-dark border-b border-border-light dark:border-border-dark shadow-sm">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-4 text-primary dark:text-white">
+<div class="h-8 w-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">ImpôtMoiÇa!</h2>
+</div>
+<div class="hidden md:flex flex-1 items-center justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-white" href="Acceuilco.html">Accueil</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-white" href="commentcamarcheco.html">Comment ça marche?</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-white" href="nosservicesco.html">Nos services</a>
+</nav>
+ <div class="flex items-center gap-3">
+          <!-- Bouton Notifications -->
+          <div class="relative">
+            <button id="notificationButton" class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark hover:bg-primary/10 transition-colors relative">
+              <span class="material-symbols-outlined">notifications</span>
+              <!-- Badge de notification -->
+              <span class="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold">1</span>
+            </button>
+            
+            <!-- Menu dropdown des notifications -->
+            <div id="notificationMenu" class="hidden absolute right-0 mt-2 w-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-border-light dark:border-border-dark overflow-hidden z-50">
+              <div class="p-4 bg-primary/5 dark:bg-primary/10 border-b border-border-light dark:border-border-dark">
+                <h3 class="font-bold text-primary dark:text-white">Notifications</h3>
+              </div>
+              <div class="max-h-96 overflow-y-auto">
+                <div class="flex items-start gap-3 px-4 py-4 hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10 flex-shrink-0 mt-1">
+                    <span class="material-symbols-outlined text-secondary">event</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-text-light dark:text-text-dark">Rendez-vous confirmé</p>
+                    <p class="text-sm text-text-light/80 dark:text-text-dark/80 mt-1 leading-relaxed">Votre rendez-vous est pris avec votre expert le 2 février 2026</p>
+                    <p class="text-xs text-primary dark:text-secondary font-medium mt-2">Il y a 2 heures</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-3 bg-background-light dark:bg-background-dark border-t border-border-light dark:border-border-dark text-center">
+                <a href="notifications.html" class="text-sm font-medium text-primary dark:text-secondary hover:underline">Voir toutes les notifications</a>
+              </div>
+            </div>
+          </div>
+          <div>
+      </div>
+  
+  <!-- Menu déroulant du profil -->
+  <div class="relative">
+    <button id="profileButton" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 cursor-pointer hover:ring-2 hover:ring-primary transition-all" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCucfP6ScSQ3otNwK2cHOBFm9DPLVNZuGWaIhdZW-5GlJ7dHHqQ8OFGPxcFx2tkGnvGliAfKT5iUvGORczsojFD6pJXVCbmAzLuha569CWc_iNFfDiNwY5Va29vAivT9fRTttfehFCjdjYWFwiimiCZeef8E5umzr6MEYyBC-6KROG5tneI8yelFSSx2jBZpLA0IwuBPYscrlFjpuzvz8n6YKEb1c7yyL0E2jUwu3U-gRaxLCw8u16p2ZN_5tvGHwDbepALCOyDcfo");'></button>
+    
+    <!-- Menu dropdown (caché par défaut) -->
+    <div id="profileMenu" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-border-light dark:border-border-dark overflow-hidden z-50">
+      <div class="py-2">
+        <a href="tableaudebord.html" class="flex items-center gap-3 px-4 py-3 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+          <span class="material-symbols-outlined text-primary">dashboard</span>
+          <span>Mon tableau de bord</span>
+        </a>
+        <a href="parametres.html" class="flex items-center gap-3 px-4 py-3 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+          <span class="material-symbols-outlined text-primary">settings</span>
+          <span>Paramètres</span>
+        </a>
+        <a href="aide.html" class="flex items-center gap-3 px-4 py-3 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+          <span class="material-symbols-outlined text-primary">help</span>
+          <span>Aide</span>
+        </a>
+        <hr class="my-2 border-border-light dark:border-border-dark">
+        <a href="connexion.html" class="flex items-center gap-3 px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Se déconnecter</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</header>
+<main class="flex-grow px-4 md:px-6 py-10 md:py-16">
+<div class="container mx-auto">
+<section class="text-center mb-16 md:mb-24">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-4">
+<h1 class="text-4xl md:text-5xl font-black leading-tight tracking-tight text-text-light-primary dark:text-dark-primary">Des services simples, transparents et abordables</h1>
+<p class="text-base md:text-lg max-w-3xl mx-auto text-text-light-secondary dark:text-dark-secondary">Choisissez la tranquillité d'esprit avec nos deux offres claires, conçues pour s'adapter parfaitement à vos besoins et maximiser votre retour.</p>
+</div>
+</div>
+</section>
+<section class="mb-16 md:mb-24">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<div class="flex flex-col gap-6 p-8 bg-secondary dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark text-center">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-accent">Préparation</h2>
+<p class="text-5xl font-black leading-tight tracking-tight">$20<span class="text-base font-medium text-text-light-secondary dark:text-dark-secondary">/fixe</span></p>
+<p class="text-sm text-text-light-secondary dark:text-dark-secondary min-h-[40px]">Idéal pour une déclaration simple et efficace, préparée par nos experts.</p>
+<ul class="space-y-3 text-left text-sm">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>Déclaration de revenus complète</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>Recherche de crédits et déductions applicables</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>Transmission électronique rapide et sécurisée</li>
+</ul>
+<button onclick="window.location.href='tableaudebord.html'" class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary/90 text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors w-full">
+<span class="truncate">Choisir la Préparation</span>
+</button>
+</div>
+<div class="flex flex-col gap-6 p-8 bg-primary dark:bg-accent rounded-xl border border-primary dark:border-accent text-white text-center">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-white">Révision</h2>
+<p class="text-5xl font-black leading-tight tracking-tight">$20 + 5%*</p>
+<p class="text-sm text-white/80 min-h-[40px]">Notre garantie : nous trouvons un retour supplémentaire, ou la révision est gratuite.</p>
+<ul class="space-y-3 text-left text-sm">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-white text-base mt-0.5">check_circle</span>Analyse approfondie de votre déclaration existante</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-white text-base mt-0.5">check_circle</span>Garantie de retour supplémentaire</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-white text-base mt-0.5">check_circle</span>Tranquillité d'esprit assurée</li>
+</ul>
+<button onclick="window.location.href='tableaudebord.html'" class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white hover:bg-gray-200 text-primary dark:text-accent-dark dark:hover:bg-gray-200 text-base font-bold leading-normal tracking-[0.015em] transition-colors w-full">
+<span class="truncate">Choisir la Révision</span>
+</button>
+<p class="text-xs text-white/60 text-center italic">*5% du retour supplémentaire obtenu, jusqu'à un maximum de 100$.</p>
+</div>
+</div>
+</section>
+<section class="max-w-3xl mx-auto">
+<h2 class="text-2xl md:text-3xl font-bold text-center mb-10">Foire Aux Questions</h2>
+<div class="space-y-4">
+<details class="group p-4 rounded-lg bg-secondary dark:bg-background-dark border border-border-light dark:border-border-dark">
+<summary class="flex items-center justify-between cursor-pointer font-medium">
+                      Quelle offre me convient le mieux?
+                      <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+                      Si vous partez de zéro, notre offre "Préparation" à 20$ est parfaite. Si vous avez déjà préparé votre déclaration (ou l'avez fait faire) et voulez vous assurer d'avoir le meilleur retour possible, notre service "Révision &amp; Garantie" est la meilleure option.
+                    </div>
+</details>
+<details class="group p-4 rounded-lg bg-secondary dark:bg-background-dark border border-border-light dark:border-border-dark">
+<summary class="flex items-center justify-between cursor-pointer font-medium">
+                      Quels documents dois-je apporter?
+                      <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+                      Apportez tous vos feuillets fiscaux (T4, T5, Relevé 1, etc.), vos reçus de dons, frais médicaux, frais de garde, et toute autre information pertinente à votre situation financière de l'année. En cas de doute, apportez-le!
+                    </div>
+</details>
+<details class="group p-4 rounded-lg bg-secondary dark:bg-background-dark border border-border-light dark:border-border-dark">
+<summary class="flex items-center justify-between cursor-pointer font-medium">
+                      Que se passe-t-il si vous ne trouvez pas de retour supplémentaire avec la révision?
+                      <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+                      C'est notre garantie! Si nous ne trouvons aucun montant supplémentaire à vous faire économiser ou à ajouter à votre retour, le service de révision est entièrement gratuit. Vous n'avez rien à perdre.
+                    </div>
+</details>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-primary text-white mt-16 md:mt-24">
+<div class="max-w-5xl mx-auto py-10 px-6 md:px-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold">ImpôtMoiÇa!</h3>
+<p class="text-sm mt-2 text-white/80">Votre partenaire de confiance pour des déclarations de revenus simples et efficaces.</p>
+</div>
+<div>
+<h4 class="font-semibold">Navigation</h4>
+<ul class="space-y-2 mt-2 text-sm text-white/80">
+<li><a class="hover:text-accent transition-colors" href="Acceuilco.html">Accueil</a></li>
+<li><a class="hover:text-accent transition-colors" href="commentcamarcheco.html">Comment ça marche?</a></li>
+<li><a class="hover:text-accent transition-colors" href="nosservicesco.html">Nos services</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold">Contactez-nous</h4>
+<ul class="space-y-2 mt-2 text-sm text-white/80">
+<li>123 Rue de l'Impôt, Montréal, QC</li>
+<li>(514) 123-4567</li>
+<li>contact@impotmoica.com</li>
+</ul>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/20 text-center text-sm text-white/60">
+<p>© 2024 ImpôtMoiÇa!. Tous droits réservés.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+<script>
+// Menu déroulant du profil et des notifications
+const profileButton = document.getElementById('profileButton');
+const profileMenu = document.getElementById('profileMenu');
+const notificationButton = document.getElementById('notificationButton');
+const notificationMenu = document.getElementById('notificationMenu');
+
+// Gestion du menu profil
+if (profileButton && profileMenu) {
+  profileButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileMenu.classList.toggle('hidden');
+    // Fermer le menu des notifications si ouvert
+    if (notificationMenu) notificationMenu.classList.add('hidden');
+  });
+}
+
+// Gestion du menu notifications
+if (notificationButton && notificationMenu) {
+  notificationButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    notificationMenu.classList.toggle('hidden');
+    // Fermer le menu du profil si ouvert
+    if (profileMenu) profileMenu.classList.add('hidden');
+  });
+}
+
+// Fermer les menus si on clique ailleurs
+document.addEventListener('click', (e) => {
+  if (profileMenu && !profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+    profileMenu.classList.add('hidden');
+  }
+  if (notificationMenu && !notificationButton.contains(e.target) && !notificationMenu.contains(e.target)) {
+    notificationMenu.classList.add('hidden');
+  }
+});
+
+// Fermer les menus avec la touche Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (profileMenu) profileMenu.classList.add('hidden');
+    if (notificationMenu) notificationMenu.classList.add('hidden');
+  }
+});
+</script>
+</body></html>

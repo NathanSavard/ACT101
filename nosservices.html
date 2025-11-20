@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImpôtMoiÇa! - Nos Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2C3E50",
+                    "secondary": "#F4F6F7",
+                    "background-light": "#F4F6F9",
+                    "background-dark": "#101922",
+                    "text-light": "#34495E",
+                    "text-dark": "#E0E0E0",
+                    "card-light": "#FFFFFF",
+                    "card-dark": "#1A2836",
+                    "border-light": "#E0E6EC",
+                    "border-dark": "#2C3E50",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] dark:border-b-gray-700 px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4 text-text-light dark:text-text-dark">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.08V18h2v-1.92c2.01-.43 3.5-2.2 3.5-4.33 0-2.5-2-4.5-4.5-4.5S7.5 9.25 7.5 11.75c0 2.13 1.49 3.9 3.5 4.33zM12 9c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9z"></path>
+</svg>
+</div>
+<h2 class="text-text-light dark:text-text-dark text-lg font-bold leading-tight tracking-[-0.015em]">ImpôtMoiÇa!</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="Acceuil.html">Acceuil</a>
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="commentcamarche.html">Comment ça marche ?</a>
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="nosservices.html">Nos services</a>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-colors"
+        onclick="window.location.href='connexion.html'">
+    <span class="truncate">Connexion</span>
+</button>
+</div>
+<div class="md:hidden">
+<button class="text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow px-4 md:px-6 py-10 md:py-16">
+<div class="container mx-auto">
+<section class="text-center mb-16 md:mb-24">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-4">
+<h1 class="text-4xl md:text-5xl font-black leading-tight tracking-tight text-text-light-primary dark:text-dark-primary">Des services simples, transparents et abordables</h1>
+<p class="text-base md:text-lg max-w-3xl mx-auto text-text-light-secondary dark:text-dark-secondary">Choisissez la tranquillité d'esprit avec nos deux offres claires, conçues pour s'adapter parfaitement à vos besoins et maximiser votre retour.</p>
+</div>
+</div>
+</section>
+<section class="mb-16 md:mb-24">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<div class="flex flex-col gap-6 p-8 bg-secondary dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark text-center">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-accent">Préparation</h2>
+<p class="text-5xl font-black leading-tight tracking-tight">$20<span class="text-base font-medium text-text-light-secondary dark:text-dark-secondary">/fixe</span></p>
+<p class="text-sm text-text-light-secondary dark:text-dark-secondary min-h-[40px]">Idéal pour une déclaration simple et efficace, préparée par nos experts.</p>
+<ul class="space-y-3 text-left text-sm">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>Déclaration de revenus complète</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>Recherche de crédits et déductions applicables</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>Transmission électronique rapide et sécurisée</li>
+</ul>
+<button onclick="window.location.href='connexion.html'" class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary/90 text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors w-full">
+<span class="truncate">Choisir la Préparation</span>
+</button>
+</div>
+<div class="flex flex-col gap-6 p-8 bg-primary dark:bg-accent rounded-xl border border-primary dark:border-accent text-white text-center">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-white">Révision</h2>
+<p class="text-5xl font-black leading-tight tracking-tight">$20 + 5%*</p>
+<p class="text-sm text-white/80 min-h-[40px]">Notre garantie : nous trouvons un retour supplémentaire, ou la révision est gratuite.</p>
+<ul class="space-y-3 text-left text-sm">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-white text-base mt-0.5">check_circle</span>Analyse approfondie de votre déclaration existante</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-white text-base mt-0.5">check_circle</span>Garantie de retour supplémentaire</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-white text-base mt-0.5">check_circle</span>Tranquillité d'esprit assurée</li>
+</ul>
+<button onclick="window.location.href='connexion.html'" class="mt-4 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white hover:bg-gray-200 text-primary dark:text-accent-dark dark:hover:bg-gray-200 text-base font-bold leading-normal tracking-[0.015em] transition-colors w-full">
+<span class="truncate">Choisir la Révision</span>
+</button>
+<p class="text-xs text-white/60 text-center italic">*5% du retour supplémentaire obtenu, jusqu'à un maximum de 100$.</p>
+</div>
+</div>
+</section>
+<section class="max-w-3xl mx-auto">
+<h2 class="text-2xl md:text-3xl font-bold text-center mb-10">Foire Aux Questions</h2>
+<div class="space-y-4">
+<details class="group p-4 rounded-lg bg-secondary dark:bg-background-dark border border-border-light dark:border-border-dark">
+<summary class="flex items-center justify-between cursor-pointer font-medium">
+                      Quelle offre me convient le mieux?
+                      <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+                      Si vous partez de zéro, notre offre "Préparation" à 20$ est parfaite. Si vous avez déjà préparé votre déclaration (ou l'avez fait faire) et voulez vous assurer d'avoir le meilleur retour possible, notre service "Révision &amp; Garantie" est la meilleure option.
+                    </div>
+</details>
+<details class="group p-4 rounded-lg bg-secondary dark:bg-background-dark border border-border-light dark:border-border-dark">
+<summary class="flex items-center justify-between cursor-pointer font-medium">
+                      Quels documents dois-je apporter?
+                      <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+                      Apportez tous vos feuillets fiscaux (T4, T5, Relevé 1, etc.), vos reçus de dons, frais médicaux, frais de garde, et toute autre information pertinente à votre situation financière de l'année. En cas de doute, apportez-le!
+                    </div>
+</details>
+<details class="group p-4 rounded-lg bg-secondary dark:bg-background-dark border border-border-light dark:border-border-dark">
+<summary class="flex items-center justify-between cursor-pointer font-medium">
+                      Que se passe-t-il si vous ne trouvez pas de retour supplémentaire avec la révision?
+                      <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+                      C'est notre garantie! Si nous ne trouvons aucun montant supplémentaire à vous faire économiser ou à ajouter à votre retour, le service de révision est entièrement gratuit. Vous n'avez rien à perdre.
+                    </div>
+</details>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-primary text-white mt-16 md:mt-24">
+<div class="max-w-5xl mx-auto py-10 px-6 md:px-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold">ImpôtMoiÇa!</h3>
+<p class="text-sm mt-2 text-white/80">Votre partenaire de confiance pour des déclarations de revenus simples et efficaces.</p>
+</div>
+<div>
+<h4 class="font-semibold">Navigation</h4>
+<ul class="space-y-2 mt-2 text-sm text-white/80">
+<li><a class="hover:text-accent transition-colors" href="Acceuil.html">Accueil</a></li>
+<li><a class="hover:text-accent transition-colors" href="commentcamarche.html">Comment ça marche?</a></li>
+<li><a class="hover:text-accent transition-colors" href="nosservices.html">Nos services</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold">Contactez-nous</h4>
+<ul class="space-y-2 mt-2 text-sm text-white/80">
+<li>123 Rue de l'Impôt, Montréal, QC</li>
+<li>(514) 123-4567</li>
+<li>contact@impotmoica.com</li>
+</ul>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/20 text-center text-sm text-white/60">
+<p>© 2024 ImpôtMoiÇa!. Tous droits réservés.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
